@@ -34,11 +34,4 @@ CREATE TABLE tlbMovimientos
     idCuenta INT                     NOT NULL
 );
 
-CREATE TABLE tblTarjeta
-(
-    id               INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,
-    numero           VARCHAR(16),
-    fechaVencimiento VARCHAR(5),
-    cvv              INT(3),
-    idCuenta         INT NOT NULL
-);
+

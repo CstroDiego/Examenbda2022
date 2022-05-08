@@ -3,7 +3,11 @@ package mx.itson.nu.entidades;
 import javax.persistence.*;
 
 /**
- * The type Corte.
+ * Representa los cortes de una tarjeta de crédito.
+ *
+ * @author Diego Castro Arce
+ * @author Andrés Uriel López Castillo
+ * @author Alan Fernando Romero Hernandez
  */
 @Entity
 @Table(name = "corte")
@@ -21,74 +25,74 @@ public class Corte {
   private Cuenta cuenta;
 
   /**
-   * Gets id.
+   * Obtiene el valor del atributo id.
    *
-   * @return the id
+   * @return El atributo id.
    */
-public int getId() {
+  public int getId() {
     return id;
   }
 
   /**
-   * Sets id.
+   * Asigna el valor del atributo id.
    *
-   * @param id the id
+   * @param id Valor a asignar al atributo id.
    */
-public void setId(int id) {
+  public void setId(int id) {
     this.id = id;
   }
 
   /**
-   * Gets periodo.
+   * Obtiene el valor del atributo periodo.
    *
-   * @return the periodo
+   * @return El atributo periodo.
    */
-public String getPeriodo() {
+  public String getPeriodo() {
     return periodo;
   }
 
   /**
-   * Sets periodo.
+   * Asigna el valor del atributo periodo.
    *
-   * @param periodo the periodo
+   * @param periodo Valor a asignar al atributo periodo.
    */
-public void setPeriodo(String periodo) {
+  public void setPeriodo(String periodo) {
     this.periodo = periodo;
   }
 
   /**
-   * Gets monto.
+   * Obtiene el valor del atributo monto.
    *
-   * @return the monto
+   * @return El atributo monto.
    */
-public float getMonto() {
+  public float getMonto() {
     return monto;
   }
 
   /**
-   * Sets monto.
+   * Asigna el valor del atributo monto.
    *
-   * @param monto the monto
+   * @param monto Valor a asignar al atributo monto.
    */
-public void setMonto(float monto) {
+  public void setMonto(float monto) {
     this.monto = monto;
   }
 
   /**
-   * Gets cuenta.
+   * Obtiene el valor del atributo cuenta.
    *
-   * @return the cuenta
+   * @return El atributo cuenta.
    */
-public Cuenta getCuenta() {
+  public Cuenta getCuenta() {
     return cuenta;
   }
 
   /**
-   * Sets cuenta.
+   * Asigna el valor del atributo cuenta.
    *
-   * @param cuenta the cuenta
+   * @param cuenta Valor a asignar al atributo cuenta.
    */
-public void setCuenta(Cuenta cuenta) {
+  public void setCuenta(Cuenta cuenta) {
     this.cuenta = cuenta;
   }
 }

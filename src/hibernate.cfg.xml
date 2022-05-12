@@ -11,8 +11,8 @@
         <property name="hibernate.show_sql">true</property>
 
 
-        <mapping class="mx.itson.nu.entidades.Cliente"/>
-        <mapping class="mx.itson.nu.entidades.Cuenta"/>
-        <mapping class="mx.itson.nu.entidades.Movimiento"/>
+        <mapping class="mx.itson.gagashin.entidades.Cliente"/>
+        <mapping class="mx.itson.gagashin.entidades.Cuenta"/>
+        <mapping class="mx.itson.gagashin.entidades.Movimiento"/>
     </session-factory>
 </hibernate-configuration>

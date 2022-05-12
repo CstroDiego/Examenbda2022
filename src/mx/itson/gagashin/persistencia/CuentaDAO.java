@@ -1,8 +1,8 @@
-package mx.itson.nu.persistencia;
+package mx.itson.gagashin.persistencia;
 
-import mx.itson.nu.entidades.Cliente;
-import mx.itson.nu.entidades.Cuenta;
-import mx.itson.nu.utilerias.HibernateUtil;
+import mx.itson.gagashin.entidades.Cliente;
+import mx.itson.gagashin.entidades.Cuenta;
+import mx.itson.gagashin.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuentaDAO {
-
 
   public static List<Cuenta> obtenerTodos() {
     List<Cuenta> cuentas = new ArrayList<>();
@@ -25,7 +24,6 @@ public class CuentaDAO {
     }
     return cuentas;
   }
-
 
   public static boolean guardar(
       float credito,
@@ -51,7 +49,6 @@ public class CuentaDAO {
     }
     return resultado;
   }
-
 
   public static boolean editar(
       int id,
@@ -81,7 +78,6 @@ public class CuentaDAO {
     return resultado;
   }
 
-
   public static boolean eliminar(int id) {
     boolean resultado = false;
     try {
@@ -98,7 +94,6 @@ public class CuentaDAO {
     }
     return resultado;
   }
-
 
   public static Cuenta obtenerPorId(int id) {
     Cuenta c = null;

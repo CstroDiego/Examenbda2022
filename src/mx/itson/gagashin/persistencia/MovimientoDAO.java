@@ -1,8 +1,8 @@
-package mx.itson.nu.persistencia;
+package mx.itson.gagashin.persistencia;
 
-import mx.itson.nu.entidades.Cuenta;
-import mx.itson.nu.entidades.Movimiento;
-import mx.itson.nu.utilerias.HibernateUtil;
+import mx.itson.gagashin.entidades.Cuenta;
+import mx.itson.gagashin.entidades.Movimiento;
+import mx.itson.gagashin.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -44,29 +44,6 @@ public class MovimientoDAO {
       resultado = m.getId() != 0;
     } catch (HibernateException ex) {
       System.err.println("Error al guardar movimiento: " + ex.getMessage());
-    }
-    return resultado;
-  }
-
-  public static boolean editar(
-      int id, Date fecha, float monto, String tipo, String concepto, Cuenta cuenta) {
-    boolean resultado = false;
-    try {
-      Session session = HibernateUtil.getSessionFactory().openSession();
-      session.beginTransaction();
-      Movimiento m = obtenerPorId(id);
-      if (m != null) {
-        m.setFecha(fecha);
-        m.setMonto(monto);
-        m.setTipo(tipo);
-        m.setConcepto(concepto);
-        m.setCuenta(cuenta);
-        session.saveOrUpdate(m);
-        session.getTransaction().commit();
-        resultado = m.getId() != 0;
-      }
-    } catch (HibernateException ex) {
-      System.err.println("Error al editar movimiento: " + ex.getMessage());
     }
     return resultado;
   }

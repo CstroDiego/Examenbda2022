@@ -1,7 +1,7 @@
-package mx.itson.nu.persistencia;
+package mx.itson.gagashin.persistencia;
 
-import mx.itson.nu.entidades.Cliente;
-import mx.itson.nu.utilerias.HibernateUtil;
+import mx.itson.gagashin.entidades.Cliente;
+import mx.itson.gagashin.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 

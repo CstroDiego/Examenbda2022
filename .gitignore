@@ -2,6 +2,7 @@
 /out/
 /build.xml
 /manifest.mf
-/Nu.iml
 /build/
 /dist/
+/nbproject/private/
+/Gagashin.iml

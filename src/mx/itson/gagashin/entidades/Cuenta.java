@@ -1,4 +1,4 @@
-package mx.itson.nu.entidades;
+package mx.itson.gagashin.entidades;
 
 import javax.persistence.*;
 

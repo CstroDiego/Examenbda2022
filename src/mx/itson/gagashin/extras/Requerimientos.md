@@ -18,10 +18,3 @@ varias cosas, pero para efectos de esta asignación solo se requiere lo siguient
 - Poder seleccionar la fecha del sistema para cambiarla y crear movimientos en diferentes fechas.
 
 ---
--Tenemos que tener la opcion de generar una tarjeta? y tener la opcion de bloquearla,
-
--Cuando dice lo de la tarjeta, tenemos que especificar al momento de realizar un movimiento algun dato de la tarjeta
-o podemos obviar que estamos haciendo transacciones con la misma tarjeta?
-
-
-

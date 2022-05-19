@@ -7,6 +7,7 @@ package mx.itson.gagashin.ui;
 import mx.itson.gagashin.entidades.Movimiento;
 import mx.itson.gagashin.persistencia.MovimientoDAO;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class MovimientosListado extends javax.swing.JFrame {
           new Object[] {
             movimiento.getId(),
             movimiento.getIdCliente(),
-            movimiento.getFecha(),
-            movimiento.getMonto(),
+            movimiento.getConcepto(),
             movimiento.getTipo(),
-            movimiento.getConcepto()
+            movimiento.getMonto(),
+            movimiento.getFecha()
           });
     }
   }
@@ -59,7 +60,6 @@ public class MovimientosListado extends javax.swing.JFrame {
     btnAgregarMovimiento = new javax.swing.JMenuItem();
     btnCancelarMovimiento = new javax.swing.JMenuItem();
     btnCuenta = new javax.swing.JMenu();
-    btnEditarCuenta = new javax.swing.JMenuItem();
     btnEstadoCuenta = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,25 +94,46 @@ public class MovimientosListado extends javax.swing.JFrame {
     jScrollPane1.setViewportView(tblMovimientos);
 
     btnRegresar.setText("Regresar");
+    btnRegresar.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnRegresarActionPerformed(evt);
+          }
+        });
 
     jLabel2.setText("Listado de movimientos");
 
     btnMovimientos.setText("Movimientos");
 
     btnAgregarMovimiento.setText("Agregar");
+    btnAgregarMovimiento.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnAgregarMovimientoActionPerformed(evt);
+          }
+        });
     btnMovimientos.add(btnAgregarMovimiento);
 
     btnCancelarMovimiento.setText("Cancelar");
+    btnCancelarMovimiento.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnCancelarMovimientoActionPerformed(evt);
+          }
+        });
     btnMovimientos.add(btnCancelarMovimiento);
 
     jMenuBar1.add(btnMovimientos);
 
     btnCuenta.setText("Cuenta");
 
-    btnEditarCuenta.setText("Editar");
-    btnCuenta.add(btnEditarCuenta);
-
     btnEstadoCuenta.setText("Estado de cuenta");
+    btnEstadoCuenta.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEstadoCuentaActionPerformed(evt);
+          }
+        });
     btnCuenta.add(btnEstadoCuenta);
 
     jMenuBar1.add(btnCuenta);
@@ -226,6 +247,57 @@ public class MovimientosListado extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   } // </editor-fold>//GEN-END:initComponents
 
+  private void btnRegresarActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnRegresarActionPerformed
+    this.dispose();
+  } // GEN-LAST:event_btnRegresarActionPerformed
+
+  private void btnAgregarMovimientoActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnAgregarMovimientoActionPerformed
+    MovimientoFormulario movimientoFormulario = new MovimientoFormulario(this, true, 0, idCliente);
+    movimientoFormulario.setVisible(true);
+    cargar();
+  } // GEN-LAST:event_btnAgregarMovimientoActionPerformed
+
+  private void btnCancelarMovimientoActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnCancelarMovimientoActionPerformed
+    int fila = tblMovimientos.getSelectedRow();
+    if (fila >= 0) {
+      int idMovimiento = (int) tblMovimientos.getValueAt(fila, 0);
+      if (JOptionPane.showConfirmDialog(
+              this,
+              "¿Está seguro de cancelar el movimiento?",
+              "Cancelar movimiento",
+              JOptionPane.YES_NO_OPTION)
+          == JOptionPane.YES_OPTION) {
+        if (MovimientoDAO.eliminar(idMovimiento)) {
+          JOptionPane.showMessageDialog(
+              this,
+              "Movimiento cancelado correctamente",
+              "Cancelar movimiento",
+              JOptionPane.INFORMATION_MESSAGE);
+          cargar();
+        } else {
+          JOptionPane.showMessageDialog(
+              this,
+              "No se pudo cancelar el movimiento",
+              "Cancelar movimiento",
+              JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    } else {
+      JOptionPane.showMessageDialog(
+          this, "Seleccione un movimiento", "Cancelar movimiento", JOptionPane.ERROR_MESSAGE);
+    }
+  } // GEN-LAST:event_btnCancelarMovimientoActionPerformed
+
+  private void btnEstadoCuentaActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnEstadoCuentaActionPerformed
+    CorteListado corteListado = new CorteListado(idCliente);
+    corteListado.setVisible(true);
+    cargar();
+  } // GEN-LAST:event_btnEstadoCuentaActionPerformed
+
   private void formWindowOpened(
       java.awt.event.WindowEvent evt) { // GEN-FIRST:event_formWindowOpened
     cargar();
@@ -277,7 +349,6 @@ public class MovimientosListado extends javax.swing.JFrame {
   private javax.swing.JButton btnBuscar;
   private javax.swing.JMenuItem btnCancelarMovimiento;
   private javax.swing.JMenu btnCuenta;
-  private javax.swing.JMenuItem btnEditarCuenta;
   private javax.swing.JMenuItem btnEstadoCuenta;
   private javax.swing.JMenu btnMovimientos;
   private javax.swing.JButton btnRegresar;

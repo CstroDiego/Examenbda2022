@@ -17,14 +17,19 @@ public class Movimiento {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Temporal(TemporalType.DATE)
-  private Date fecha;
-
-  private float monto;
+  private String fecha;
+  private String monto;
   private String tipo;
   private String concepto;
-
   private int idCliente;
+
+  public String getFecha() {
+    return fecha;
+  }
+
+  public void setFecha(String fecha) {
+    this.fecha = fecha;
+  }
 
   public int getIdCliente() {
     return idCliente;
@@ -32,6 +37,14 @@ public class Movimiento {
 
   public void setIdCliente(int idCliente) {
     this.idCliente = idCliente;
+  }
+
+  public String getMonto() {
+    return monto;
+  }
+
+  public void setMonto(String monto) {
+    this.monto = monto;
   }
 
   /**
@@ -50,42 +63,6 @@ public class Movimiento {
    */
   public void setId(int id) {
     this.id = id;
-  }
-
-  /**
-   * Obtiene el valor del atributo fecha.
-   *
-   * @return El atributo fecha.
-   */
-  public Date getFecha() {
-    return fecha;
-  }
-
-  /**
-   * Asigna el valor del atributo fecha.
-   *
-   * @param fecha Valor a asignar al atributo fecha.
-   */
-  public void setFecha(Date fecha) {
-    this.fecha = fecha;
-  }
-
-  /**
-   * Obtiene el valor del atributo monto.
-   *
-   * @return El atributo monto.
-   */
-  public float getMonto() {
-    return monto;
-  }
-
-  /**
-   * Asigna el valor del atributo monto.
-   *
-   * @param monto Valor a asignar al atributo monto.
-   */
-  public void setMonto(float monto) {
-    this.monto = monto;
   }
 
   /**

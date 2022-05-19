@@ -5,20 +5,27 @@
 package mx.itson.gagashin.ui;
 
 import mx.itson.gagashin.entidades.Movimiento;
+import mx.itson.gagashin.persistencia.ClienteDAO;
 import mx.itson.gagashin.persistencia.MovimientoDAO;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.util.Date;
 import java.util.List;
 
 /**
  * @author diego
  */
 public class MovimientoFormulario extends javax.swing.JDialog {
-  int id = 0;
+  int idCliente = 0;
+  private int id;
+
   /** Creates new form MovimientoFormulario */
-  public MovimientoFormulario(java.awt.Frame parent, boolean modal, int id) {
+  public MovimientoFormulario(java.awt.Frame parent, boolean modal, int id, int idCliente) {
     super(parent, modal);
     this.id = id;
+    this.idCliente = idCliente;
     initComponents();
   }
 
@@ -58,9 +65,22 @@ public class MovimientoFormulario extends javax.swing.JDialog {
 
     jLabel2.setText("Monto:");
 
+    txtMonto.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtMontoKeyTyped(evt);
+          }
+        });
+
     jLabel5.setText("Fecha:");
 
     btnGuardar.setText("Aceptar");
+    btnGuardar.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnGuardarActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -247,6 +267,35 @@ public class MovimientoFormulario extends javax.swing.JDialog {
     setLocationRelativeTo(null);
   } // </editor-fold>//GEN-END:initComponents
 
+  private void btnGuardarActionPerformed(
+      ActionEvent evt) { // GEN-FIRST:event_btnGuardarActionPerformed
+    String fecha = txtFecha.getText();
+    String monto = txtMonto.getText();
+    String tipo = btnTipo.getSelectedItem().toString();
+    String concepto = txtConcepto.getText();
+
+    boolean resultado =
+        this.id == 0
+            ? MovimientoDAO.guardar(fecha, monto, tipo, concepto, this.idCliente)
+            : MovimientoDAO.editar(this.id, fecha, monto, tipo, concepto, this.idCliente);
+
+    if (resultado) {
+      JOptionPane.showMessageDialog(
+          this,
+          "El registro fue guardado correctamente",
+          "REGISTRO GUARDADO",
+          JOptionPane.INFORMATION_MESSAGE);
+      dispose();
+    } else {
+      JOptionPane.showMessageDialog(
+          this, "Ocurrió un error al guardar el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
+      dispose();
+    }
+  } // GEN-LAST:event_btnGuardarActionPerformed
+
+  private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) { // GEN-FIRST:event_txtMontoKeyTyped
+  } // GEN-LAST:event_txtMontoKeyTyped
+
   /**
    * @param args the command line arguments
    */
@@ -284,7 +333,7 @@ public class MovimientoFormulario extends javax.swing.JDialog {
         new Runnable() {
           public void run() {
             MovimientoFormulario dialog =
-                new MovimientoFormulario(new javax.swing.JFrame(), true, 0);
+                new MovimientoFormulario(new javax.swing.JFrame(), true, 0, 0);
             dialog.addWindowListener(
                 new java.awt.event.WindowAdapter() {
                   @Override

@@ -8,6 +8,7 @@ import mx.itson.gagashin.entidades.Cliente;
 import mx.itson.gagashin.persistencia.ClienteDAO;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 public class ClienteFormulario extends javax.swing.JDialog {
   int id = 0;
@@ -77,7 +78,21 @@ public class ClienteFormulario extends javax.swing.JDialog {
 
     jLabel7.setText("Linea de credito:");
 
+    txtCredito.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtCreditoKeyTyped(evt);
+          }
+        });
+
     jLabel8.setText("Porcentaje fijo de intereses");
+
+    txtIntereses.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtInteresesKeyTyped(evt);
+          }
+        });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -199,6 +214,14 @@ public class ClienteFormulario extends javax.swing.JDialog {
     pack();
     setLocationRelativeTo(null);
   } // </editor-fold>//GEN-END:initComponents
+
+  private void txtCreditoKeyTyped(
+      java.awt.event.KeyEvent evt) { // GEN-FIRST:event_txtCreditoKeyTyped
+  } // GEN-LAST:event_txtCreditoKeyTyped
+
+  private void txtInteresesKeyTyped(
+      java.awt.event.KeyEvent evt) { // GEN-FIRST:event_txtInteresesKeyTyped
+  } // GEN-LAST:event_txtInteresesKeyTyped
 
   private void btnGuardarActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_btnGuardarActionPerformed

@@ -14,22 +14,22 @@ import java.util.List;
  * @author diego
  */
 public class MovimientosListado extends javax.swing.JFrame {
-  int id = 0;
+  int idCliente = 0;
   /** Creates new form MovimientosListado */
   public MovimientosListado(int id) {
-    this.id = id;
+    this.idCliente = id;
     initComponents();
   }
 
   public void cargar() {
-    List<Movimiento> list = MovimientoDAO.obtenerPorId(id);
+    List<Movimiento> list = MovimientoDAO.obtenerPorId(idCliente);
     DefaultTableModel modelo = (DefaultTableModel) tblMovimientos.getModel();
     modelo.setRowCount(0);
     for (Movimiento movimiento : list) {
       modelo.addRow(
           new Object[] {
             movimiento.getId(),
-            movimiento.getIdCuenta(),
+            movimiento.getIdCliente(),
             movimiento.getFecha(),
             movimiento.getMonto(),
             movimiento.getTipo(),

@@ -1,25 +1,28 @@
 package mx.itson.gagashin.persistencia;
 
-import mx.itson.gagashin.entidades.Cuenta;
 import mx.itson.gagashin.entidades.Movimiento;
 import mx.itson.gagashin.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 public class MovimientoDAO {
 
-  public static List<Movimiento> obtenerTodos(int idCliente) {
+  public static List<Movimiento> obtenerTodos() {
     List<Movimiento> movimientos = new ArrayList<>();
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
       CriteriaQuery<Movimiento> criteriaQuery =
           session.getCriteriaBuilder().createQuery(Movimiento.class);
-      criteriaQuery.from(Movimiento.class, idCliente);
+      criteriaQuery.from(Movimiento.class);
       movimientos = session.createQuery(criteriaQuery).getResultList();
     } catch (HibernateException ex) {
       System.err.println("Error: " + ex.getMessage());
@@ -27,21 +30,28 @@ public class MovimientoDAO {
     return movimientos;
   }
 
-  public static Movimiento obtenerPorId(int id) {
-    Movimiento m = null;
+  public static List<Movimiento> obtenerPorId(int idCliente) {
+    List<Movimiento> movimientos = new ArrayList<>();
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
-      session.beginTransaction();
-      m = session.get(Movimiento.class, id);
-
+      DetachedCriteria criteria = DetachedCriteria.forClass(Movimiento.class);
+      criteria.add(Restrictions.eq("id", idCliente));
+      criteria.addOrder(Order.desc("fecha"));
+      movimientos = criteria.getExecutableCriteria(session).list();
     } catch (HibernateException ex) {
-      System.err.println("Error al obtener movimiento: " + ex.getMessage());
+      System.err.println("Error: " + ex.getMessage());
     }
-    return m;
+    return movimientos;
   }
 
-  public static boolean guardar(
-      Date fecha, float monto, String tipo, String concepto, Cuenta cuenta) {
+  public Collection<String> buscarPorId(int id) {
+    DetachedCriteria criteria = DetachedCriteria.forClass(Movimiento.class);
+    criteria.add(Restrictions.eq("estado.id", id));
+    criteria.addOrder(Order.desc("fecha"));
+    return criteria.getExecutableCriteria(HibernateUtil.getSessionFactory().openSession()).list();
+  }
+
+  public static boolean guardar(Date fecha, float monto, String tipo, String concepto) {
     boolean resultado = false;
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();

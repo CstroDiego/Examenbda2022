@@ -17,8 +17,6 @@ public class Movimiento {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  private int idCuenta;
-
   @Temporal(TemporalType.DATE)
   private Date fecha;
 
@@ -26,12 +24,14 @@ public class Movimiento {
   private String tipo;
   private String concepto;
 
-  public int getIdCuenta() {
-    return idCuenta;
+  private int idCliente;
+
+  public int getIdCliente() {
+    return idCliente;
   }
 
-  public void setIdCuenta(int idCuenta) {
-    this.idCuenta = idCuenta;
+  public void setIdCliente(int idCliente) {
+    this.idCliente = idCliente;
   }
 
   /**

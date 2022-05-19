@@ -11,11 +11,21 @@ import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
+/**
+ * Contiene los atributos y métodos correspondientes a los movimientos de los clientes
+ *
+ * @author Diego Castro Arce
+ */
 public class MovimientoDAO {
 
+  /**
+   * Método que obtiene todos los movimientos de un cliente
+   *
+   * @param idCliente id del cliente
+   * @return lista de movimientos
+   */
   public static List<Movimiento> obtenerPorId(int idCliente) {
     List<Movimiento> movimientos = new ArrayList<>();
     try {
@@ -31,6 +41,13 @@ public class MovimientoDAO {
     return movimientos;
   }
 
+  /**
+   * Método que obtiene todos los movimientos de un cliente en un rango de fechas
+   *
+   * @param periodo Periodo de los movimientos
+   * @param idCliente Identificador del cliente
+   * @return Lista de movimientos
+   */
   public static List<Movimiento> obtenerPorFecha(int periodo, int idCliente) {
     List<Movimiento> movimientos = new ArrayList<>();
     try {
@@ -140,6 +157,16 @@ public class MovimientoDAO {
     return movimientos;
   }
 
+  /**
+   * Guarda un movimiento en la base de datos
+   *
+   * @param fecha Fecha del movimiento
+   * @param monto Monto del movimiento
+   * @param tipo Tipo del movimiento
+   * @param concepto Concepto del movimiento
+   * @param idCliente Identificador del cliente
+   * @return Un entero que indica si el registro fue eliminado o no.
+   */
   public static boolean guardar(
       String fecha, String monto, String tipo, String concepto, int idCliente) {
     boolean resultado = false;
@@ -161,6 +188,17 @@ public class MovimientoDAO {
     return resultado;
   }
 
+  /**
+   * Guarda los cambios hechos de un movimiento en la base de datos
+   *
+   * @param id Identificador del movimiento
+   * @param fecha Fecha del movimiento
+   * @param monto Monto del movimiento
+   * @param tipo Tipo del movimiento
+   * @param concepto Concepto del movimiento
+   * @param idCliente Identificador del cliente
+   * @return Un entero que indica si el registro fue eliminado o no.
+   */
   public static boolean editar(
       int id, String fecha, String monto, String tipo, String concepto, int idCliente) {
     boolean resultado = false;
@@ -183,6 +221,12 @@ public class MovimientoDAO {
     return resultado;
   }
 
+  /**
+   * Obtiene un movimiento de la base de datos con el criterio de busqueda dado
+   *
+   * @param id Identificador del movimiento
+   * @return Un objeto Movimiento
+   */
   public static Movimiento eliminarPorId(int id) {
     Movimiento m = null;
     try {
@@ -195,6 +239,12 @@ public class MovimientoDAO {
     return m;
   }
 
+  /**
+   * Elimina un movimiento de la base de datos
+   *
+   * @param id Identificador del movimiento
+   * @return Un entero que indica si el registro fue eliminado o no.
+   */
   public static boolean eliminar(int id) {
     boolean resultado = false;
     try {

@@ -1,12 +1,10 @@
 package mx.itson.gagashin.entidades;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Representa los movimientos de una cuenta, ya sea gasto o abono.
  *
- * @author Diego Castro Arce
  * @author Andrés Uriel López Castillo
  */
 @Entity
@@ -23,26 +21,56 @@ public class Movimiento {
   private String concepto;
   private int idCliente;
 
+  /**
+   * Obtiene el valor del atributo id.
+   *
+   * @return El valor del atributo id.
+   */
   public String getFecha() {
     return fecha;
   }
 
+  /**
+   * Asigna el valor del atributo fecha.
+   *
+   * @param fecha Valor a asignar al atributo fecha.
+   */
   public void setFecha(String fecha) {
     this.fecha = fecha;
   }
 
+  /**
+   * Obtiene el valor del atributo monto.
+   *
+   * @return El valor del atributo monto.
+   */
   public int getIdCliente() {
     return idCliente;
   }
 
+  /**
+   * Asigna el valor del atributo idCliente.
+   *
+   * @param idCliente Valor a asignar al atributo idCliente.
+   */
   public void setIdCliente(int idCliente) {
     this.idCliente = idCliente;
   }
 
+  /**
+   * Obtiene el valor del atributo monto.
+   *
+   * @return El valor del atributo monto.
+   */
   public String getMonto() {
     return monto;
   }
 
+  /**
+   * Asigna el valor del atributo monto.
+   *
+   * @param monto Valor a asignar al atributo monto.
+   */
   public void setMonto(String monto) {
     this.monto = monto;
   }

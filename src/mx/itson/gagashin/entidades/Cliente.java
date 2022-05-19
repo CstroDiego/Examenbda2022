@@ -5,9 +5,7 @@ import javax.persistence.*;
 /**
  * Representa los clientes del banco.
  *
- * @author Diego Castro Arce
  * @author Andrés Uriel López Castillo
- * @author Alan Fernando Romero Hernandez
  */
 @Entity
 @Table(name = "cliente")
@@ -26,18 +24,38 @@ public class Cliente {
   private String credito;
   private String intereses;
 
+  /**
+   * Obtiene el valor del atributo Crédito.
+   *
+   * @return El valor del atributo Crédito.
+   */
   public String getCredito() {
     return credito;
   }
 
+  /**
+   * Asigna el valor del atributo credito.
+   *
+   * @param credito Valor a asignar al atributo credito.
+   */
   public void setCredito(String credito) {
     this.credito = credito;
   }
 
+  /**
+   * Obtiene el valor del atributo intereses.
+   *
+   * @return El valor del atributo intereses.
+   */
   public String getIntereses() {
     return intereses;
   }
 
+  /**
+   * Asigna el valor del atributo intereses.
+   *
+   * @param intereses Valor a asignar al atributo intereses.
+   */
   public void setIntereses(String intereses) {
     this.intereses = intereses;
   }

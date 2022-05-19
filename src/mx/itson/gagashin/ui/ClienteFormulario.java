@@ -8,19 +8,31 @@ import mx.itson.gagashin.entidades.Cliente;
 import mx.itson.gagashin.persistencia.ClienteDAO;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 
+/** Interfaz gráfica para añadir o editar un cliente
+ * @author Alan Fernando Romero Hernandez
+ * @author Diego Castro Arce
+ * */
 public class ClienteFormulario extends javax.swing.JDialog {
-  int id = 0;
+  /** El id del cliente */
+int id = 0;
 
-  public ClienteFormulario(java.awt.Frame parent, boolean modal, int id) {
+  /**
+   * Inicializa los componentes del formulario
+   *
+   * @param parent El formulario padre
+   * @param modal Indica si el formulario es modal
+   * @param id El id del cliente
+   */
+public ClienteFormulario(java.awt.Frame parent, boolean modal, int id) {
     super(parent, modal);
     this.id = id;
     initComponents();
     cargarFormulario();
   }
 
-  public void cargarFormulario() {
+  /** Carga el contenido de la tabla */
+public void cargarFormulario() {
     if (this.id != 0) {
       Cliente cliente = ClienteDAO.obtenerPorId(id);
       txtNombre.setText(cliente.getNombre());
@@ -254,7 +266,12 @@ public class ClienteFormulario extends javax.swing.JDialog {
     }
   } // GEN-LAST:event_btnGuardarActionPerformed
 
-  public static void main(String args[]) {
+  /**
+   * Método principal de la clase.
+   *
+   * @param args Los argumentos de la línea de comandos.
+   */
+public static void main(String args[]) {
     /* Set the Nimbus look and feel */
     // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
     /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

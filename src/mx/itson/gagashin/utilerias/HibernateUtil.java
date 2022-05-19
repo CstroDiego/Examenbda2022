@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 /**
- * The type Hibernate util.
+ * Hibernate Utility class with a convenient method to get Session Factory
  *
  * @author Diego Castro Arce
  */

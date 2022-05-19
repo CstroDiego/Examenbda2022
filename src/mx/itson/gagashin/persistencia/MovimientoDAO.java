@@ -13,13 +13,13 @@ import java.util.List;
 
 public class MovimientoDAO {
 
-  public static List<Movimiento> obtenerTodos(int idCliente) {
+  public static List<Movimiento> obtenerTodos() {
     List<Movimiento> movimientos = new ArrayList<>();
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
       CriteriaQuery<Movimiento> criteriaQuery =
           session.getCriteriaBuilder().createQuery(Movimiento.class);
-      criteriaQuery.from(Movimiento.class, idCliente);
+      criteriaQuery.from(Movimiento.class);
       movimientos = session.createQuery(criteriaQuery).getResultList();
     } catch (HibernateException ex) {
       System.err.println("Error: " + ex.getMessage());

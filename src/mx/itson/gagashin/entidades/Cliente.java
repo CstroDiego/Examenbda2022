@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author Alan Fernando Romero Hernandez
  */
 @Entity
-@Table(name = "tblCliente")
+@Table(name = "cliente")
 public class Cliente {
 
   @Id
@@ -22,6 +22,25 @@ public class Cliente {
   private String direccion;
   private String telefono;
   private String email;
+
+  private String credito;
+  private String intereses;
+
+  public String getCredito() {
+    return credito;
+  }
+
+  public void setCredito(String credito) {
+    this.credito = credito;
+  }
+
+  public String getIntereses() {
+    return intereses;
+  }
+
+  public void setIntereses(String intereses) {
+    this.intereses = intereses;
+  }
 
   /**
    * Obtiene el valor del atributo id.

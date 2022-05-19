@@ -26,7 +26,13 @@ public class ClienteDAO {
   }
 
   public static boolean guardar(
-      String nombre, String apellido, String direccion, String telefono, String email) {
+      String nombre,
+      String apellido,
+      String direccion,
+      String telefono,
+      String email,
+      String credito,
+      String intereses) {
     boolean resultado = false;
 
     try {
@@ -38,6 +44,9 @@ public class ClienteDAO {
       c.setDireccion(direccion);
       c.setTelefono(telefono);
       c.setEmail(email);
+      c.setCredito(credito);
+      c.setIntereses(intereses);
+
       session.save(c);
       session.getTransaction().commit();
       resultado = c.getId() != 0;
@@ -48,7 +57,14 @@ public class ClienteDAO {
   }
 
   public static boolean editar(
-      int id, String nombre, String apellido, String direccion, String telefono, String email) {
+      int id,
+      String nombre,
+      String apellido,
+      String direccion,
+      String telefono,
+      String email,
+      String credito,
+      String intereses) {
     boolean resultado = false;
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
@@ -60,6 +76,8 @@ public class ClienteDAO {
         c.setDireccion(direccion);
         c.setTelefono(telefono);
         c.setEmail(email);
+        c.setCredito(credito);
+        c.setIntereses(intereses);
         session.saveOrUpdate(c);
         session.getTransaction().commit();
         resultado = c.getId() != 0;

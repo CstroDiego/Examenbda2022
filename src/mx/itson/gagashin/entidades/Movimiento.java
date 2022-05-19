@@ -8,7 +8,6 @@ import java.util.Date;
  *
  * @author Diego Castro Arce
  * @author Andrés Uriel López Castillo
- * @author Alan Fernando Romero Hernandez
  */
 @Entity
 @Table(name = "movimientos")
@@ -18,9 +17,7 @@ public class Movimiento {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "idCuenta")
-  private Cuenta cuenta;
+  private int idCuenta;
 
   @Temporal(TemporalType.DATE)
   private Date fecha;
@@ -28,6 +25,14 @@ public class Movimiento {
   private float monto;
   private String tipo;
   private String concepto;
+
+  public int getIdCuenta() {
+    return idCuenta;
+  }
+
+  public void setIdCuenta(int idCuenta) {
+    this.idCuenta = idCuenta;
+  }
 
   /**
    * Obtiene el valor del atributo id.
@@ -45,24 +50,6 @@ public class Movimiento {
    */
   public void setId(int id) {
     this.id = id;
-  }
-
-  /**
-   * Obtiene el valor del atributo cuenta.
-   *
-   * @return El atributo cuenta.
-   */
-  public Cuenta getCuenta() {
-    return cuenta;
-  }
-
-  /**
-   * Asigna el valor del atributo cuenta.
-   *
-   * @param cuenta Valor a asignar al atributo cuenta.
-   */
-  public void setCuenta(Cuenta cuenta) {
-    this.cuenta = cuenta;
   }
 
   /**

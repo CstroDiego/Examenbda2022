@@ -16,14 +16,14 @@ public class Cuenta {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "idCliente")
-  private Cliente cliente;
+  @Column(name = "idCliente")
+  private int idCliente;
 
-  private float credito;
-  private float ajusteCredito;
-  private float intereses;
-  private boolean bloquearTarjeta;
+  @Column(name = "credito")
+  private String credito;
+
+  @Column(name = "intereses")
+  private String intereses;
 
   /**
    * Obtiene el valor del atributo id.
@@ -48,17 +48,17 @@ public class Cuenta {
    *
    * @return El atributo cliente.
    */
-  public Cliente getCliente() {
-    return cliente;
+  public int getIdCliente() {
+    return idCliente;
   }
 
   /**
    * Asigna el valor del atributo cliente.
    *
-   * @param cliente Valor a asignar al atributo cliente.
+   * @param idCliente Valor a asignar al atributo cliente.
    */
-  public void setCliente(Cliente cliente) {
-    this.cliente = cliente;
+  public void setIdCliente(int idCliente) {
+    this.idCliente = idCliente;
   }
 
   /**
@@ -66,7 +66,7 @@ public class Cuenta {
    *
    * @return El atributo credito.
    */
-  public float getCredito() {
+  public String getCredito() {
     return credito;
   }
 
@@ -75,26 +75,8 @@ public class Cuenta {
    *
    * @param credito Valor a asignar al atributo credito.
    */
-  public void setCredito(float credito) {
+  public void setCredito(String credito) {
     this.credito = credito;
-  }
-
-  /**
-   * Obtiene el valor del atributo ajusteCredito.
-   *
-   * @return El atributo ajusteCredito.
-   */
-  public float getAjusteCredito() {
-    return ajusteCredito;
-  }
-
-  /**
-   * Asigna el valor del atributo ajusteCredito.
-   *
-   * @param ajusteCredito Valor a asignar al atributo ajusteCredito.
-   */
-  public void setAjusteCredito(float ajusteCredito) {
-    this.ajusteCredito = ajusteCredito;
   }
 
   /**
@@ -102,7 +84,7 @@ public class Cuenta {
    *
    * @return El atributo intereses.
    */
-  public float getIntereses() {
+  public String getIntereses() {
     return intereses;
   }
 
@@ -111,25 +93,7 @@ public class Cuenta {
    *
    * @param intereses Valor a asignar al atributo intereses.
    */
-  public void setIntereses(float intereses) {
+  public void setIntereses(String intereses) {
     this.intereses = intereses;
-  }
-
-  /**
-   * Obtiene el valor del atributo bloquearTarjeta.
-   *
-   * @return El atributo bloquearTarjeta.
-   */
-  public boolean isBloquearTarjeta() {
-    return bloquearTarjeta;
-  }
-
-  /**
-   * Asigna el valor del atributo bloquearTarjeta.
-   *
-   * @param bloquearTarjeta Valor a asignar al atributo bloquearTarjeta.
-   */
-  public void setBloquearTarjeta(boolean bloquearTarjeta) {
-    this.bloquearTarjeta = bloquearTarjeta;
   }
 }

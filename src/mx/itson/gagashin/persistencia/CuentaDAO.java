@@ -6,6 +6,7 @@ import mx.itson.gagashin.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +26,16 @@ public class CuentaDAO {
     return cuentas;
   }
 
-  public static boolean guardar(
-      float credito,
-      float ajusteCredito,
-      float intereses,
-      boolean bloquearTarjeta,
-      Cliente cliente) {
+  public static boolean guardar(String credito, String intereses, int idCliente) {
+
     boolean resultado = false;
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
       session.beginTransaction();
       Cuenta c = new Cuenta();
       c.setCredito(credito);
-      c.setAjusteCredito(ajusteCredito);
       c.setIntereses(intereses);
-      c.setBloquearTarjeta(bloquearTarjeta);
-      c.setCliente(cliente);
+      c.setIdCliente(idCliente);
       session.save(c);
       session.getTransaction().commit();
       resultado = c.getId() != 0;
@@ -50,13 +45,8 @@ public class CuentaDAO {
     return resultado;
   }
 
-  public static boolean editar(
-      int id,
-      float credito,
-      float ajusteCredito,
-      float intereses,
-      boolean bloquearTarjeta,
-      Cliente cliente) {
+  public static boolean editar(int id, String credito, String intereses, int idCliente) {
+
     boolean resultado = false;
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
@@ -64,10 +54,8 @@ public class CuentaDAO {
       Cuenta c = obtenerPorId(id);
       if (c != null) {
         c.setCredito(credito);
-        c.setAjusteCredito(ajusteCredito);
         c.setIntereses(intereses);
-        c.setBloquearTarjeta(bloquearTarjeta);
-        c.setCliente(cliente);
+        c.setIdCliente(idCliente);
         session.saveOrUpdate(c);
         session.getTransaction().commit();
         resultado = c.getId() != 0;

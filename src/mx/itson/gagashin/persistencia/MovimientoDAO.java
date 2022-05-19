@@ -13,18 +13,31 @@ import java.util.List;
 
 public class MovimientoDAO {
 
-  public static List<Movimiento> obtenerTodos() {
+  public static List<Movimiento> obtenerTodos(int idCliente) {
     List<Movimiento> movimientos = new ArrayList<>();
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
       CriteriaQuery<Movimiento> criteriaQuery =
           session.getCriteriaBuilder().createQuery(Movimiento.class);
-      criteriaQuery.from(Movimiento.class);
+      criteriaQuery.from(Movimiento.class, idCliente);
       movimientos = session.createQuery(criteriaQuery).getResultList();
     } catch (HibernateException ex) {
       System.err.println("Error: " + ex.getMessage());
     }
     return movimientos;
+  }
+
+  public static Movimiento obtenerPorId(int id) {
+    Movimiento m = null;
+    try {
+      Session session = HibernateUtil.getSessionFactory().openSession();
+      session.beginTransaction();
+      m = session.get(Movimiento.class, id);
+
+    } catch (HibernateException ex) {
+      System.err.println("Error al obtener movimiento: " + ex.getMessage());
+    }
+    return m;
   }
 
   public static boolean guardar(
@@ -38,7 +51,6 @@ public class MovimientoDAO {
       m.setMonto(monto);
       m.setTipo(tipo);
       m.setConcepto(concepto);
-      m.setCuenta(cuenta);
       session.save(m);
       session.getTransaction().commit();
       resultado = m.getId() != 0;
@@ -53,7 +65,7 @@ public class MovimientoDAO {
     try {
       Session session = HibernateUtil.getSessionFactory().openSession();
       session.beginTransaction();
-      Movimiento m = obtenerPorId(id);
+      Movimiento m = (Movimiento) obtenerPorId(id);
 
       if (m != null) {
         session.delete(m);
@@ -65,17 +77,5 @@ public class MovimientoDAO {
       System.err.println("Error al eliminar movimiento: " + ex.getMessage());
     }
     return resultado;
-  }
-
-  public static Movimiento obtenerPorId(int id) {
-    Movimiento m = null;
-    try {
-      Session session = HibernateUtil.getSessionFactory().openSession();
-      session.beginTransaction();
-      m = session.get(Movimiento.class, id);
-    } catch (HibernateException ex) {
-      System.err.println("Error al obtener movimiento: " + ex.getMessage());
-    }
-    return m;
   }
 }
